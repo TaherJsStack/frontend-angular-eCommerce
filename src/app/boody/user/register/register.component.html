@@ -1,0 +1,232 @@
+
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12">
+                  <div class="breadcrumb-wrap">
+                      <nav aria-label="breadcrumb">
+                          <ul class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="/">Home</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Register</li>
+                          </ul>
+                      </nav>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- breadcrumb area end -->
+
+  <!-- Start of Login Wrapper -->
+  <div class="login-wrapper pb-70">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                  <main id="primary" class="site-main">
+                      <div class="user-login">
+                          <div class="row">
+                              <div class="col-12 col-sm-12 col-md-12">
+                                  <div class="section-title text-center">
+                                      <h3>Create an Account</h3>
+                                  </div>
+                              </div>
+                          </div> <!-- end of row -->
+                          <div class="row">
+                              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 offset-xl-3">
+                                  <div class="registration-form login-form">
+
+                                      <form (ngSubmit)="onSaveUser(user)" #user="ngForm">
+                                        <div class="example-container">
+                                          <div ngModelGroup="name">
+                                            <mat-form-field>
+                                              <input
+                                                ngModel
+                                                matInput
+                                                required
+                                                type="text"
+                                                name="firstname"
+                                                #first='ngModel'
+                                                placeholder="first name">
+                                                <mat-error *ngIf="first.invalid"> please enter first name </mat-error>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                              <input
+                                                ngModel
+                                                matInput
+                                                required
+                                                type="text"
+                                                name="lastname"
+                                                #lastname='ngModel'
+                                                placeholder="last name">
+                                                <mat-error *ngIf="lastname.invalid"> please enter last name </mat-error>
+                                            </mat-form-field>
+                                          </div>
+
+                                          <mat-form-field>
+                                            <input
+                                              ngModel
+                                              matInput
+                                              required
+                                              email
+                                              type="email"
+                                              name="userEmail"
+                                              #userEmail="ngModel"
+                                              placeholder="User Email">
+                                              <mat-error *ngIf="userEmail.invalid"> please enter Email </mat-error>
+                                              <p style="color: red"> {{ errMsg }} </p>
+                                          </mat-form-field>
+
+                                          <mat-form-field>
+                                            <input
+                                              ngModel
+                                              matInput
+                                              required
+                                              type="password"
+                                              name="userPassword"
+                                              #password="ngModel"
+                                              placeholder="User Password">
+                                              <mat-error *ngIf="password.invalid"> please enter password </mat-error>
+                                          </mat-form-field>
+
+                                          <mat-form-field>
+                                            <input
+                                              ngModel
+                                              matInput
+                                              required
+                                              type="password"
+                                              name="userConfig"
+                                              #userConfig="ngModel"
+                                              placeholder="User Confige password">
+                                              <mat-error *ngIf="userConfig.invalid "> please enter Config password </mat-error>
+                                              <mat-error *ngIf="userConfig.touched && userConfig.value !== password.value"> password doesn't match </mat-error>
+                                          </mat-form-field>
+
+
+                                          <mat-form-field>
+                                            <input
+                                              ngModel
+                                              matInput
+                                              required
+                                              type="number"
+                                              name="userPhone"
+                                              #userPhone="ngModel"
+                                              placeholder="User user Phone No">
+                                              <mat-error *ngIf="userPhone.invalid"> please enter Phone No </mat-error>
+                                          </mat-form-field>
+
+                                          <mat-form-field class="example-full-width">
+                                            <input
+                                              matInput
+                                              ngModel
+                                              required
+                                              name="userDate"
+                                              [min]="minDate"
+                                              [max]="maxDate"
+                                              #userDate="ngModel"
+                                              [matDatepicker]="picker"
+                                              placeholder="Choose a date">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                            <mat-error *ngIf="userDate.invalid"> please enter Date </mat-error>
+                                          </mat-form-field>
+
+                                          <div ngModelGroup="address">
+                                              <mat-form-field>
+                                                <input
+                                                  ngModel
+                                                  matInput
+                                                  required
+                                                  type="text"
+                                                  name="zip"
+                                                  #zip="ngModel"
+                                                  placeholder="zip">
+                                                  <mat-error *ngIf="zip.invalid"> please enter Citys address zip </mat-error>
+                                              </mat-form-field>
+                                              <mat-form-field>
+                                                <input
+                                                  ngModel
+                                                  matInput
+                                                  required
+                                                  type="text"
+                                                  name="city"
+                                                  #city="ngModel"
+                                                  placeholder="city">
+                                                  <mat-error *ngIf="city.invalid"> please enter address Citys </mat-error>
+                                              </mat-form-field>
+                                              <mat-form-field>
+                                                <input
+                                                  ngModel
+                                                  matInput
+                                                  required
+                                                  type="text"
+                                                  name="street"
+                                                  #street="ngModel"
+                                                  placeholder="User City">
+                                                  <mat-error *ngIf="street.invalid"> please enter address street </mat-error>
+                                              </mat-form-field>
+
+                                              <mat-form-field>
+                                                <mat-select
+                                                  matInput
+                                                  required
+                                                  ngModel
+                                                  name="country"
+                                                  #userCountry="ngModel"
+                                                  placeholder="Select Country">
+                                                  <mat-option
+                                                    *ngFor="let country of allCountries"
+                                                    value="country.name"
+                                                    >{{ country.name }}</mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="userCountry.invalid"> please enter address country </mat-error>
+                                              </mat-form-field>
+                                          </div>
+                                          <section class="example-section">
+                                            <label class="example-margin">ginder: </label>
+                                            <mat-radio-group
+                                              ngModel
+                                              required
+                                              #userGinder="ngModel"
+                                              name="userGinder">
+                                              <mat-radio-button class="example-margin" value="male" > male </mat-radio-button>
+                                              <mat-radio-button class="example-margin" value="female"> female </mat-radio-button>
+                                            </mat-radio-group>
+                                            <!-- <mat-error *ngIf="userGinder.invalid"> please enter Ginder </mat-error> -->
+                                          </section>
+
+                                          <!-- <mat-slide-toggle
+                                            [(ngModel)]="blockUser"
+                                            [ngModelOptions]="{standalone: true}"
+                                            (change)="onBlockUser($event)">
+                                            blocked user
+                                          </mat-slide-toggle> -->
+
+
+                                          <div class="example-button-row">
+                                            <button
+                                              mat-raised-button
+                                              color="primary"
+                                              type="submit"
+                                              [disabled]="user.invalid">Register</button>
+                                          </div>
+                                         </div>
+                                      </form>
+
+
+
+
+
+
+
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div> <!-- end of user-login -->
+                  </main> <!-- end of #primary -->
+              </div>
+          </div> <!-- end of row -->
+      </div> <!-- end of container -->
+  </div>
+  <!-- End of Login Wrapper -->

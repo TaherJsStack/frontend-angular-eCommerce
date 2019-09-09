@@ -1,0 +1,210 @@
+
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area mb-30">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12">
+                  <div class="breadcrumb-wrap">
+                      <nav aria-label="breadcrumb">
+                          <ul class="breadcrumb">
+                              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Shop grid left sidebar</li>
+                          </ul>
+                      </nav>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- breadcrumb area end -->
+
+ <!-- shop page main wrapper start -->
+ <div class="main-wrapper pt-35">
+     <div class="container-fluid">
+         <div class="row">
+             <div class="col-lg-3">
+                  <div class="shop-sidebar-inner mb-30">
+                      <!-- filter-price-content start -->
+                      <div class="single-sidebar mb-45">
+                          <div class="sidebar-inner-title mb-25">
+                              <h3>Fillter by price</h3>
+                          </div>
+                          <!-- <mat-slider></mat-slider> -->
+                          <!-- <mat-slider
+                            thumbLabel 
+                            (change)="cha($event)"
+                            min="1"
+                            max="1000">
+                        </mat-slider> -->
+                      </div>
+                       <!-- filte price end -->
+                       <!-- categories filter start -->
+                       <div class="single-sidebar mb-45 ">
+                           <div class="sidebar-inner-title mb-25">
+                               <h3 routerLink="/Shop">Categories</h3>
+                           </div>
+                           <div>
+                               <div>
+                                   <ul>
+                                    <li class="list-group-item" *ngFor="let cate of categories; let i = index">
+                                      <a
+                                        routerLink="/Shop"
+                                        [queryParams]="{ caregory: cate.name }"
+                                        [class.active]="caregory === cate.name">
+                                        {{ i + 1 }}) {{ cate.name }}
+                                      </a>
+                                    </li>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+                       <!-- categories filter end -->
+               
+                      
+                  </div>
+                   <!-- sidebar promote picture start -->
+                   <div class="single-sidebar mb-30">
+                       <div class="sidebar-thumb">
+                           <a href="#"><img src="assets/img/banner/img-static-sidebar.jpg" alt=""></a>
+                       </div>
+                   </div>
+                   <!-- sidebar promote picture end -->
+             </div>
+             <div class="col-lg-9 order-first order-lg-last">
+                  <div class="product-shop-main-wrapper mb-50">
+                      <div class="shop-baner-img mb-70">
+                          <a href="#"><img src="assets/img/banner/category-image.jpg" alt=""></a>
+                      </div>
+                      <div class="shop-top-bar mb-30">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="top-bar-left">
+                                      <div class="product-view-mode">
+                                          <a routerLinkActive="active"  data-target="column_3"><span>3-col</span></a>
+                                          <a routerLinkActive="active" data-target="grid" (click)="productViewMode('grid')"><span>4-col</span></a>
+                                          <a routerLinkActive="active" data-target="list" (click)="productViewMode('list')"><span>list</span></a>
+                                      </div>
+                                      <div class="product-page">
+                                          <p>Showing {{ proPerPage }} to {{ proPerPage }} of {{ totalProducts }} </p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="top-bar-right">
+                                      <div class="per-page">
+                                          <p>Show : </p>
+                                          <select class="nice-select" name="sortby" (change)="oncha($event)">
+                                              <option value="5">5</option>
+                                              <option value="10">10</option>
+                                              <option value="20">20</option>
+                                          </select>
+                                      </div>
+                                      <div class="product-short">
+                                          <p>Sort By : </p>
+                                          <select class="nice-select" name="sortby">
+                                              <option value="trending">Relevance</option>
+                                              <option value="sales">Name (A - Z)</option>
+                                              <option value="sales">Name (Z - A)</option>
+                                              <option value="rating">Price (Low &gt; High)</option>
+                                              <option value="date">Rating (Lowest)</option>
+                                              <option value="price-asc">Model (A - Z)</option>
+                                              <option value="price-asc">Model (Z - A)</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="shop-product-wrap grid column_3 row">
+                          
+
+
+                        <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let product of filterdProducts">
+                          <div class="product-item" [style.border]="isBought(product) ? '1.5px solid green' : ' '">
+                              <div class="product-thumb">
+                                  <a href="">
+                                      <img src="{{product.image}}" class="pri-img" alt="">
+                                      <!-- <img src="assets/img/product/product-7.jpg" class="sec-img" alt=""> -->
+                                  </a>
+                                  <div class="box-label">
+                                      <div class="label-product label_new">
+                                          <span> {{ product.addedDate > [date]  ? 'new' : '' }} </span>
+                                      </div>
+                                      <div class="label-product label_sale">
+                                          <span>{{ product.priceDisc | currency:'USD'  }}</span>
+                                      </div>
+                                  </div>
+                                  <div class="action-links">
+                                      <a (click)="onAddToWishList(product)" [style.background]="isWishOnList(product) ? '#83b71c' : ' '" title="Wishlist">
+                                        <i class="lnr lnr-heart"></i>
+                                      </a>
+                                      <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                  </div>
+                              </div>
+                              <div class="product-caption">
+                                  <div class="manufacture-product">
+                                      <p><a href="#">{{ product.name}}</a></p>
+                                  </div>
+                                  <div class="product-name">
+                                      <h4><a href="#">{{ product.description }}</a></h4>
+                                  </div>
+                                  <div class="ratings">
+                                      <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                      <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                      <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                      <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                      <span><i class="lnr lnr-star"></i></span>
+                                  </div>
+                                  <div class="price-box">
+                                      <span class="regular-price"><span class="special-price">{{ product.price | currency:'USD' }}</span></span>
+                                      <span class="old-price"><del> {{ product.priceDisc | currency:'USD' }} </del></span>
+                                  </div>
+                                  <button class="btn-cart" type="button" (click)="onAddToCart(product)" *ngIf="!isBought(product)">add to cart</button>
+                                  <button class="btn-cart" 
+                                          type="button" 
+                                          (click)="onRemove(product, product.id)" 
+                                          *ngIf="isBought(product)"  
+                                          [style.background]="isBought(product) ? '#fe4f19' : ' '" >remove cart</button>
+                              </div>
+                          </div>
+                      </div> <!-- single item end -->
+
+
+
+                          
+                      </div>
+                      <div class="paginatoin-area style-2 pt-35 pb-20">
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="pagination-area">
+                                      <p>Showing 1 to 9 of 9 (1 Pages)</p>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <ul class="pagination-box pagination-style-2">
+                                      <li><a class="Previous" href="#">Previous</a>
+                                      </li>
+                                      <li class="active"><a href="#">1</a></li>
+                                      <li><a href="#">2</a></li>
+                                      <li><a href="#">3</a></li>
+                                      <li>
+                                        <a class="Next" href="#"> Next </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- shop page main wrapper end -->
+
+ <!-- <mat-paginator
+    [length]="totalProducts"
+    [pageSize]="proPerPage"
+    [pageSizeOptions]="proPageSizeOptions"
+    (page)="onChangedPage($event)">
+  </mat-paginator> -->

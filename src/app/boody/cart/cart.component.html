@@ -1,0 +1,128 @@
+
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12">
+                  <div class="breadcrumb-wrap">
+                      <nav aria-label="breadcrumb">
+                          <ul class="breadcrumb">
+                              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                          </ul>
+                      </nav>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- breadcrumb area end -->
+
+  <!-- Start cart Wrapper -->
+  <div class="shopping-cart-wrapper pb-70">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                  <main id="primary" class="site-main">
+                      <div class="shopping-cart">
+                          <div class="row">
+                              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                  <div class="section-title">
+                                      <h3>Shopping Cart</h3>
+                                       <h4 *ngIf="items.length < 1" class="text-center"> Your Cart's Empty Plase Add Items </h4>
+                                  </div>
+
+                                  <form *ngIf="items.length > 0"  >
+                                      <div class="table-responsive">
+                                          <table class="table table-bordered">
+                                              <thead>
+                                                  <tr>
+                                                      <td>Image</td>
+                                                      <td>Product Name</td>
+                                                      <td>Model</td>
+                                                      <td>Quantity</td>
+                                                      <td>Unit Price</td>
+                                                      <td>Total</td>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr *ngFor="let item of items" >
+                                                      <td>
+                                                          <a href="product-details.html"><img src="{{ item.image }}" alt="Cart Product Image" title="Compete Track Tote" class="img-thumbnail"></a>
+                                                      </td>
+                                                      <td>
+                                                          <a href="product-details.html">{{ item.name }}</a>
+                                                          <span>Delivery Date: {{ item.addedDate | date }}</span>
+                                                          <span>Color: Brown</span>
+                                                          <span>Reward Points: {{ item.price }}</span>
+                                                      </td>
+                                                      <td>3</td>
+                                                      <td>
+                                                          <div class="input-group btn-block">
+                                                              <div class="product-qty mr-3">
+                                                                  <input type="number" value="{{ item.clientItems }}">
+                                                              </div>
+                                                              <span class="input-group-btn">
+                                                                  <button type="submit" class="btn btn-primary" (click)="onPlus(item)">
+                                                                    <i class="fa fa-plus-circle"></i>
+                                                                  </button>
+                                                                  <button type="button" class="btn btn-danger pull-right" (click)="onRemove(item, item.id)">
+                                                                    <i class="fa fa-minus-circle"></i>
+                                                                  </button>
+                                                              </span>
+                                                          </div>
+                                                      </td>
+                                                      <td>{{ item.priceDisc | currency:"USD":true }}</td>
+                                                      <td>{{ item.priceDisc *  item.clientItems | currency:"USD":true }}</td>
+                                                  </tr>
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                  </form>
+
+                                  <div class="cart-amount-wrapper">
+                                      <div class="row">
+                                          <div class="col-12 col-sm-12 col-md-4 offset-md-8">
+                                              <table class="table table-bordered">
+                                                  <tbody>
+                                                      <tr>
+                                                        <td><strong>Total:</strong></td>
+                                                        <td><span class="color-primary">{{ total | currency:"USD":true }} </span></td>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="cart-button-wrapper d-flex justify-content-between mt-4">
+                                      <a routerLink="/Shop" class="btn btn-secondary">Continue Shopping</a>
+                                      <button (click)="onSendorder()" class="btn btn-secondary dark align-self-end" [disabled]="total == 0">Order Done</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> <!-- end of shopping-cart -->
+                  </main> <!-- end of #primary -->
+              </div>
+          </div> <!-- end of row -->
+      </div> <!-- end of container -->
+  </div>
+  <!-- End cart Wrapper -->
+<div *ngIf="orderDone"   style="position: fixed;
+                background-color: #6eb56e52;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 9999;">
+  <h6 style="      width: 190px;
+  height: 190px;
+  background-color: #27ef2791;
+  margin: 10% auto;
+  border-radius: 90px;
+  text-align: center;
+  line-height: 2;
+  color: #fff;
+  font-size: 98px;"> <i class="fa fa-check" aria-hidden="true"></i>
+ </h6>
+</div>

@@ -1,0 +1,96 @@
+
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12">
+                  <div class="breadcrumb-wrap">
+                      <nav aria-label="breadcrumb">
+                          <ul class="breadcrumb">
+                              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Login</li>
+                          </ul>
+                      </nav>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- breadcrumb area end -->
+
+  <!-- Start of Login Wrapper -->
+  <div class="login-wrapper pb-70">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                  <main id="primary" class="site-main">
+                      <div class="user-login">
+                          <div class="row">
+                              <div class="col-12 col-sm-12 col-md-12">
+                                  <div class="section-title text-center">
+                                      <h3>Log in to your account</h3>
+                                  </div>
+                              </div>
+                          </div> <!-- end of row -->
+                          <div class="row">
+                              <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3">
+                                <div class="alert alert-success text-center" 
+                                    *ngIf="showAlertVerifyEmail"
+                                    style="color: #fff"> places check your E-mail for Verify  </div>
+                                  <div class="login-form">
+
+                                      <form (ngSubmit)="onSignin(auth)" #auth="ngForm">
+                                        <mat-error *ngIf="errMsg"  class="alert">{{ errMsg }}</mat-error>
+
+                                        <div class="example-container">
+
+                                          <mat-form-field>
+                                            <input
+                                              ngModel
+                                              matInput
+                                              required
+                                              email
+                                              #email="ngModel"
+                                              type="email"
+                                              name="authEmail"
+                                              placeholder="auth Email => ibra@i.com">
+                                              <mat-error *ngIf="email">Default Testing Admin E-mail => ibra@i.com</mat-error>
+                                          </mat-form-field>
+
+                                          <mat-form-field>
+                                            <input
+                                              ngModel
+                                              matInput
+                                              required
+                                              #password="ngModel"
+                                              type="password"
+                                              name="authPassword"
+                                              placeholder="auth Password => 123456">
+                                              <mat-error *ngIf="password.invalid">Default Testing Admin Password => 123456</mat-error>
+                                          </mat-form-field>
+
+                                          <div class="example-button-row">
+                                            <button
+                                              mat-raised-button
+                                              color="primary"
+                                              type="submit"
+                                              [disabled]="auth.invalid">Login</button>
+                                          </div>
+                                          </div>
+                                          <div class="text-center pt-20 top-bordered">
+                                            <p>No account? <a routerLink="/User/Register">Create one here</a>.</p>
+                                        </div>
+                                      </form>
+
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div> <!-- end of user-login -->
+                  </main> <!-- end of #primary -->
+              </div>
+          </div> <!-- end of row -->
+      </div> <!-- end of container -->
+  </div>
+  <!-- End of Login Wrapper -->
+

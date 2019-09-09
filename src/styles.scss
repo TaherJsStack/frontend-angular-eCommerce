@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.alert-success{
+  background-color: #46c925bd;
+  box-shadow: 10px 10px 10px 10px #8fec78bd;
+  border: 1px solid  #175f05e0
+}
+.alert-danger{
+  background-color: #c93825bd;
+  box-shadow: 10px 10px 10px 10px #ee5d4abd;
+  border: 1px solid  #5e1208d7;
+}
+.flash-message{
+  color: #fff;
+  text-shadow: 10px 10px 10px #95a5a6;
+  border-radius: 4px;
+  position: fixed;
+  top:15%;
+  right: 0;
+  min-width: 28%;
+  transition: all ease-in-out 5s;
+  z-index: 999;
+}
+
+.mat-slider-thumb-label {
+  width: 40px !important;
+  height: 40px !important;
+}
